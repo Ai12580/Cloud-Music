@@ -34,7 +34,7 @@
 <script>
   export default {
     name: 'FourCircles'
-  };
+  }
 </script>
 
 <style lang='less' scoped>
@@ -53,7 +53,6 @@
           background-color: #d44439;
           width: 0.5rem;
           height: 0.5rem;
-          // box-shadow: 0 0 .05rem #000;
           .iconfont {
             color: #f1f1f1;
             font-size: 0.25rem;
@@ -72,9 +71,5 @@
     text-decoration: none;
     color: #000;
     font-size: 0.15rem;
-    // &.router-link-active {
-    //   text-decoration: none;
-    //   color: #000;
-    // }
   }
 </style>

@@ -26,11 +26,11 @@
 
 <script>
   import moment from "moment"; // 引入Moment.js插件
-  import BackHeader from '@/components/BackHeader';
-  import SongList from '@/components/SongList';
+  import BackHeader from '@/components/BackHeader'
+  import SongList from '@/components/SongList'
   import { getPlayListDetail } from "@/api/PlayListDetail";
 
-  moment.locale("zh-cn"); // 设置moment显示中文
+  moment.locale("zh-cn") // 设置moment显示中文
 
   export default {
     name: "PlaylistDetail",
@@ -42,7 +42,7 @@
         tracks: [],
         trackCount: 0,
         subscribedCount: ""
-      };
+      }
     },
     components: {
       BackHeader,
@@ -50,28 +50,28 @@
     },
     methods: {
       getData() {
-        getPlayListDetail(this.$router.query.id).then(res => {
+        getPlayListDetail(this.$route.query.id).then(res => {
           // 如果图片的方案行不通，就通过背景来设置歌单的封面
-          // this.$refs.playListDesc.style.background = `url(${res.playlist.coverImgUrl})`;
-          const { playlist } = res;
-          this.coverImgUrl = playlist.coverImgUrl;
-          this.playListTitle = playlist.name;
-          this.updateTime = moment(playlist.updateTime).format("MMM Do");
-          this.tracks = playlist.tracks;
-          this.trackCount = playlist.trackCount;
-          this.subscribedCount = playlist.subscribedCount;
-        });
+          // this.$refs.playListDesc.style.background = `url(${res.playlist.coverImgUrl})`
+          const { playlist } = res
+          this.coverImgUrl = playlist.coverImgUrl
+          this.playListTitle = playlist.name
+          this.updateTime = moment(playlist.updateTime).format("MMM Do")
+          this.tracks = playlist.tracks
+          this.trackCount = playlist.trackCount
+          this.subscribedCount = playlist.subscribedCount
+        })
       }
     },
     filters: {
       formatToTenThousand(value) {
-        return (value / 10000).toFixed(1);
+        return (value / 10000).toFixed(1)
       }
     },
     created() {
-      this.getData();
+      this.getData()
     }
-  };
+  }
 </script>
 
 <style lang='less' scoped>

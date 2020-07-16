@@ -44,8 +44,8 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex';
-  import BackBtn from '@/components/BackBtn';
+  import { mapActions, mapGetters } from 'vuex'
+  import BackBtn from '@/components/BackBtn'
   import { getScreenHeight } from "@/common/utils";
   import { toggleStarTheSong } from "@/api/PlayControl";
 
@@ -54,7 +54,7 @@
     data() {
       return {
         iconClassname: 'iconfont icon-zanting',
-      };
+      }
     },
     computed: {
       ...mapGetters([
@@ -65,15 +65,15 @@
         'songInfo',
       ]),
       songId() {
-        return this.songInfo.id;
+        return this.songInfo.id
       },
       thisSongInLikelist() {
-        return this.likelist.indexOf(+this.songId) === -1;
+        return this.likelist.indexOf(+this.songId) === -1
       },
       starBtnStyle() {
         return this.thisSongInLikelist
           ? 'iconfont icon-aixin1'
-          : 'iconfont icon-aixin1 red';
+          : 'iconfont icon-aixin1 red'
       },
     },
     components: {
@@ -87,31 +87,31 @@
       ]),
       // 设置页面高度为铺满整个屏幕
       setPageHeight() {
-        this.$refs.pageWrap.style.height = getScreenHeight();
+        this.$refs.pageWrap.style.height = getScreenHeight()
       },
       toggleToPlayStatus() {
-        this.iconClassname = 'iconfont icon-zanting';
-        $(this.$refs.rotateCD).addClass('rotate');
+        this.iconClassname = 'iconfont icon-zanting'
+        $(this.$refs.rotateCD).addClass('rotate')
       },
       toggleToStopStatus() {
-        this.iconClassname = 'iconfont icon-bofang1';
-        $(this.$refs.rotateCD).removeClass('rotate');
+        this.iconClassname = 'iconfont icon-bofang1'
+        $(this.$refs.rotateCD).removeClass('rotate')
       },
       toggleStatus() {
         // 切换播放和暂停状态
-        this.getThenSetIsPlaying(!this.isPlaying);
+        this.getThenSetIsPlaying(!this.isPlaying)
       },
       async toggleStarStatus() {
         try {
-          const like = this.thisSongInLikelist;
-          await toggleStarTheSong(this.songId, like);
-          const uid = localStorage.getItem('uid');
-          this.getThenSetLikelist(uid);
+          const like = this.thisSongInLikelist
+          await toggleStarTheSong(this.songId, like)
+          const uid = localStorage.getItem('uid')
+          this.getThenSetLikelist(uid)
         } catch (error) {
           if (error.code === 301) {
-            this.$router.push('/login');
+            this.$router.push('/login')
           } else {
-            console.log(error);
+            console.log(error)
           }
         }
       },
@@ -119,36 +119,36 @@
     watch: {
       isPlaying(newStatus) {
         // 切换播放和暂停状态
-        newStatus ? this.toggleToPlayStatus() : this.toggleToStopStatus();
+        newStatus ? this.toggleToPlayStatus() : this.toggleToStopStatus()
       },
       currentTime(newTime) {
         // 更新播放进度
-        this.$refs.progress.style.width = `${(newTime / this.duration) * 100}%`;
+        this.$refs.progress.style.width = `${(newTime / this.duration) * 100}%`
       },
     },
     filters: {
       formatTime(time) {
         // 取整且补零
-        const mm = `${Math.floor(time / 60)}`.padStart(2, '0');
-        const ss = `${Math.floor(time % 60)}`.padStart(2, '0');
-        return `${mm}:${ss}`;
+        const mm = `${Math.floor(time / 60)}`.padStart(2, '0')
+        const ss = `${Math.floor(time % 60)}`.padStart(2, '0')
+        return `${mm}:${ss}`
       },
     },
     created() {
-      const uid = localStorage.getItem('uid');
+      const uid = localStorage.getItem('uid')
       // 选中一个新的歌曲，且设置好了歌曲的url后，就将isPlaying设为true
       // 其他状态都由isPlaying的状态，或者MyAudio组件的currentTime决定
       this.getThenSetSongInfo({
         ...this.$route.query,
         coverImgUrl: this.$route.params.coverImgUrl,
       });
-      this.getThenSetIsPlaying(true); // 这行代码可能写在MyAudio的watch里更好
+      this.getThenSetIsPlaying(true) // 这行代码可能写在MyAudio的watch里更好
       // 获取用户的收藏歌曲列表以确定爱心按钮的样式
-      this.getThenSetLikelist(uid);
+      this.getThenSetLikelist(uid)
     },
     mounted() {
       // 设置页面高度为整屏
-      this.setPageHeight();
+      this.setPageHeight()
     },
   };
 </script>

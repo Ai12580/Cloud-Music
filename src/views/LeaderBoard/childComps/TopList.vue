@@ -19,7 +19,7 @@
   export default {
     name: 'TopList',
     props: ['data', 'title'],
-  };
+  }
 </script>
 
 <style lang='less' scoped>

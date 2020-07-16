@@ -8,9 +8,9 @@
 </template>
 
 <script>
-  import BackHeader from '@/components/BackHeader';
-  import SearchList from './childComps/SearchList';
-  import SearchResultList from './childComps/SearchResultList';
+  import BackHeader from '@/components/BackHeader'
+  import SearchList from './childComps/SearchList'
+  import SearchResultList from './childComps/SearchResultList'
   import { getHotSearch } from "@/api/Search";
   import { getSearchResult } from "@/api/SearchResult";
 
@@ -27,35 +27,35 @@
         showResultPageFlag: false,
         history: [],
         songList: [],
-      };
+      }
     },
     methods: {
       async getData() {
-        const data = await getHotSearch();
-        this.hots = data.result.hots;
+        const data = await getHotSearch()
+        this.hots = data.result.hots
       },
       switchToResult() {
-        this.showResultPageFlag = true;
+        this.showResultPageFlag = true
       },
       startSearch(theValueToSearch) {
         // debugger;
-        this.switchToResult();
-        this.getSearchResultData(theValueToSearch);
+        this.switchToResult()
+        this.getSearchResultData(theValueToSearch)
         // push一个对象进history数组的原因是，为了使得history和hots的格式一致，这样这两部分才能共用一个SearchList组件
-        this.history.push({ first: theValueToSearch });
+        this.history.push({ first: theValueToSearch })
       },
       async getSearchResultData(theValueToSearch) {
-        const data = await getSearchResult(theValueToSearch);
-        this.songList = data.result.songs;
+        const data = await getSearchResult(theValueToSearch)
+        this.songList = data.result.songs
       },
     },
     created() {
-      this.getData();
+      this.getData()
     },
     // 该局部路由守卫的作用是让每次跳转进搜索界面时，都显示热门搜索和历史记录，而不是搜索结果
     beforeRouteLeave(to, from, next) {
-      this.showResultPageFlag = false;
-      next();
+      this.showResultPageFlag = false
+      next()
     },
   };
 </script>

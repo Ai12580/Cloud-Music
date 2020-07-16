@@ -21,19 +21,19 @@
     data() {
       return {
         banners: []
-      };
+      }
     },
     methods: {
       getData() {
-        getBanner().then(data => {
-          this.banners = data.banners;
-        });
+        getBanner().then(res => {
+          this.banners = res.banners
+        })
       }
     },
     mounted() {
-      this.getData();
+      this.getData()
     }
-  };
+  }
 </script>
 
 <style lang="less" scoped>

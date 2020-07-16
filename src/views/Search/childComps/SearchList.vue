@@ -17,11 +17,11 @@
       handleClick(e) {
         const src = e.target;
         if (src.className === 'item') {
-          this.doAfterUserClick(src.innerText);
+          this.doAfterUserClick(src.innerText)
         }
       },
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>

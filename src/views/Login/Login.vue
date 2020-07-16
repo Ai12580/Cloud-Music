@@ -40,50 +40,50 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex';
-  import BackHeader from '@/components/BackHeader';
-  import Reminder from '@/components/Reminder';
+  import { mapActions } from 'vuex'
+  import BackHeader from '@/components/BackHeader'
+  import Reminder from '@/components/Reminder'
   import { login } from "@/api/Login";
 
   export default {
     name: 'Login',
+    components: {
+      BackHeader,
+      Reminder,
+    },
     data() {
       return {
         tel: null,
         password: null,
         reminderFlag: false,
         reminderWord: '',
-      };
+      }
     },
     methods: {
       ...mapActions(['getThenSetLoginStatus']),
       cleanTel() {
-        this.tel = null;
+        this.tel = null
       },
       async tryToLogin(e) {
-        e.preventDefault(); // 防止表单提交的默认行为：刷新当前页面
-        console.log(1);
+        e.preventDefault() // 防止表单提交的默认行为：刷新当前页面
+        console.log(1)
         try {
-          const res = await login(this.tel, this.password);
-          localStorage.setItem('uid', res.account.id); // 先将用户的id即uid存储在localStorage里
-          await this.getThenSetLoginStatus(); // 更新vuex里的登录状态
-          this.$router.replace('/my');
-          // debugger;
+          const res = await login(this.tel, this.password)
+          localStorage.setItem('uid', res.account.id) // 先将用户的id即uid存储在localStorage里
+          await this.getThenSetLoginStatus() // 更新vuex里的登录状态
+          this.$router.replace('/my')
+          // debugger
         } catch (error) {
-          console.dir(error, 'failed');
-          this.reminderFlag = true;
-          this.reminderWord = error.msg;
+          console.dir(error, 'failed')
+          this.reminderFlag = true
+          this.reminderWord = error.msg
         }
       },
       resetReminder() {
-        this.reminderFlag = false;
-      },
-    },
-    components: {
-      BackHeader,
-      Reminder,
-    },
-  };
+        this.reminderFlag = false
+      }
+    }
+  }
 </script>
 
 <style lang='less' scoped>

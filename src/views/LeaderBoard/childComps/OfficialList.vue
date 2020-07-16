@@ -24,7 +24,7 @@
   export default {
     name: 'OfficialList',
     props: ['officialList'],
-  };
+  }
 </script>
 
 <style lang='less' scoped>

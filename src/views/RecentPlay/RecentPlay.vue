@@ -7,9 +7,9 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
-  import BackHeader from '@/components/BackHeader';
-  import SongList from '@/components/SongList';
+  import { mapGetters } from 'vuex'
+  import BackHeader from '@/components/BackHeader'
+  import SongList from '@/components/SongList'
   import { getSongDetail } from "@/api/RecentPlay";
 
   export default {
@@ -17,7 +17,7 @@
     data() {
       return {
         tracks: [],
-      };
+      }
     },
     computed: {
       ...mapGetters(['recentPlaylist']),
@@ -26,25 +26,25 @@
       async getRecentPlayList() {
         if (this.recentPlaylist.length) {
           try {
-            const res = await getSongDetail(this.recentPlaylist.toString());
-            this.tracks = res.songs;
+            const res = await getSongDetail(this.recentPlaylist.toString())
+            this.tracks = res.songs
           } catch (error) {
-            console.log(error);
+            console.log(error)
           }
         }
       },
     },
     created() {
-      this.getRecentPlayList();
+      this.getRecentPlayList()
     },
     activated() {
-      this.getRecentPlayList();
+      this.getRecentPlayList()
     },
     components: {
       BackHeader,
       SongList,
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>

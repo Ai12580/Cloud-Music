@@ -27,23 +27,23 @@
     data() {
       return {
         recomSongList: null,
-      };
+      }
     },
     methods: {
       getRecom() {
         getRecommendSongList()
           .then((res) => {
-            this.recomSongList = res.result;
+            this.recomSongList = res.result
           })
           .catch((err) => {
-            console.log(err);
-          });
+            console.log(err)
+          })
       },
     },
     mounted() {
-      this.getRecom();
-    },
-  };
+      this.getRecom()
+    }
+  }
 </script>
 
 <style lang='less' scoped>

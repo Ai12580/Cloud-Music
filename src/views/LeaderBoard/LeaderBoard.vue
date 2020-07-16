@@ -13,9 +13,9 @@
 </template>
 
 <script>
-  import BackHeader from '@/components/BackHeader';
-  import OfficialList from './childComps/OfficialList';
-  import TopList from './childComps/TopList';
+  import BackHeader from '@/components/BackHeader'
+  import OfficialList from './childComps/OfficialList'
+  import TopList from './childComps/TopList'
   import { getToplistDetail } from "@/api/LeaderBoard";
 
   export default {
@@ -26,7 +26,7 @@
         recommendList: [],
         internationalList: [],
         moreList: []
-      };
+      }
     },
     components: {
       BackHeader,
@@ -36,17 +36,17 @@
     mounted() {
       getToplistDetail()
         .then(res => {
-          const { list } = res;
-          this.officialList = list.slice(0, 4);
-          this.recommendList = list.slice(4, 10);
-          this.internationalList = list.slice(10, 16);
-          this.moreList = list.slice(16);
+          const { list } = res
+          this.officialList = list.slice(0, 4)
+          this.recommendList = list.slice(4, 10)
+          this.internationalList = list.slice(10, 16)
+          this.moreList = list.slice(16)
         })
         .catch(err => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     }
-  };
+  }
 </script>
 
 <style lang='less' scoped>

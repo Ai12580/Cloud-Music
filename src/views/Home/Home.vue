@@ -7,9 +7,9 @@
 </template>
 
 <script>
-  import HomeSwiper from './childComps/HomeSwiper';
-  import FourCircles from './childComps/FourCircles';
-  import RecommendSongList from './childComps/RecommendSongList';
+  import HomeSwiper from './childComps/HomeSwiper'
+  import FourCircles from './childComps/FourCircles'
+  import RecommendSongList from './childComps/RecommendSongList'
 
   export default {
     name: 'Home',
@@ -18,7 +18,7 @@
       FourCircles,
       RecommendSongList,
     },
-  };
+  }
 </script>
 
 <style lang="less" scoped>

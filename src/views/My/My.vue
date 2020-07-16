@@ -29,7 +29,7 @@
 </template>
 
 <script>
-  import { mapActions, mapGetters } from 'vuex';
+  import { mapActions, mapGetters } from 'vuex'
   import { getUserPlaylist } from "@/api/My";
 
   export default {
@@ -37,7 +37,7 @@
     data() {
       return {
         likelistId: null,
-      };
+      }
     },
     computed: {
       ...mapGetters(['likelistCount', 'recentPlaylist']),
@@ -48,24 +48,24 @@
     methods: {
       ...mapActions(['getThenSetLikelist']),
       async getData() {
-        const uid = localStorage.getItem('uid');
+        const uid = localStorage.getItem('uid')
         // TODO: 下面的代码是否要等第一个请求完成后才会进行第二个请求？
-        this.getThenSetLikelist(uid);
-        this.getLikelistId(uid);
+        this.getThenSetLikelist(uid)
+        this.getLikelistId(uid)
       },
       async getLikelistId(uid) {
         try {
-          const resUserPlaylist = await getUserPlaylist(uid);
-          this.likelistId = resUserPlaylist.playlist[0].id;
+          const resUserPlaylist = await getUserPlaylist(uid)
+          this.likelistId = resUserPlaylist.playlist[0].id
         } catch (error) {
           console.log(error);
         }
       },
     },
     created() {
-      this.getData();
+      this.getData()
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>
