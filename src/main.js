@@ -1,13 +1,10 @@
 import Vue from 'vue'
-import VueAwesomeSwiper from 'vue-awesome-swiper' // 引入Vue版本的swiper插件
-import 'swiper/dist/css/swiper.css' // 引入swiper插件的样式文件
 import App from './App.vue'
 import Spin from './components/Spin.vue'
 import router from './router'
 import store from './store'
 import loading from './assets/loading.jpg'
 
-Vue.use(VueAwesomeSwiper)
 Vue.use(Spin) // 全局的loading组件
 Vue.component('spin', Spin)
 
