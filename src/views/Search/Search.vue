@@ -32,7 +32,8 @@
     methods: {
       async getData() {
         const data = await getHotSearch()
-        this.hots = data.result.hots
+        // this.hots = data.result.hots
+        console.log(data)
       },
       switchToResult() {
         this.showResultPageFlag = true
@@ -57,7 +58,7 @@
       this.showResultPageFlag = false
       next()
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>

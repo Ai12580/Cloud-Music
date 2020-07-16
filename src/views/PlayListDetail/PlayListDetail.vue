@@ -1,39 +1,49 @@
 <template>
-  <section>
-    <back-header color="trans"></back-header>
-    <section class="play-list-detail-top" ref="playListDesc">
-      <div class="img-wrap">
-        <img v-lazy="coverImgUrl" class="cover-img">
-        <!-- TODO: lazyload是否生效？ -->
-      </div>
-      <h1 class="play-list-title">{{playListTitle}}</h1>
-      <p class="play-list-update-time">最近更新：{{updateTime}}</p>
-    </section>
-    <section class="play-list-detail-bottom">
-      <div class="play-list-control">
-        <div class="play-all">
-          <i class="iconfont icon-bofang"></i>
-          <span>播放全部（共{{trackCount}}首）</span>
-        </div>
-        <div class="star-me">+ 收藏（{{subscribedCount | formatToTenThousand}}万）</div>
-      </div>
-      <spin :spining="tracks.length === 0">
-        <song-list :tracks="tracks"></song-list>
-      </spin>
-    </section>
-  </section>
+  <div class="play-list-detail">
+    <scroll class="content">
+      <section>
+        <back-header color="trans"></back-header>
+        <section class="play-list-detail-top" ref="playListDesc">
+          <div class="img-wrap">
+            <img v-lazy="coverImgUrl" class="cover-img">
+            <!-- TODO: lazyload是否生效？ -->
+          </div>
+          <h1 class="play-list-title">{{playListTitle}}</h1>
+          <p class="play-list-update-time">最近更新：{{updateTime}}</p>
+        </section>
+        <section class="play-list-detail-bottom">
+          <div class="play-list-control">
+            <div class="play-all">
+              <i class="iconfont icon-bofang"></i>
+              <span>播放全部（共{{trackCount}}首）</span>
+            </div>
+            <div class="star-me">+ 收藏（{{subscribedCount | formatToTenThousand}}万）</div>
+          </div>
+          <spin :spining="tracks.length === 0">
+            <song-list :tracks="tracks"></song-list>
+          </spin>
+        </section>
+      </section>
+    </scroll>
+  </div>
 </template>
 
 <script>
   import moment from "moment"; // 引入Moment.js插件
   import BackHeader from '@/components/BackHeader'
   import SongList from '@/components/SongList'
+  import Scroll from '@/components/common/scroll/Scroll'
   import { getPlayListDetail } from "@/api/PlayListDetail";
 
   moment.locale("zh-cn") // 设置moment显示中文
 
   export default {
     name: "PlaylistDetail",
+    components: {
+      BackHeader,
+      SongList,
+      Scroll
+    },
     data() {
       return {
         coverImgUrl: "",
@@ -44,19 +54,16 @@
         subscribedCount: ""
       }
     },
-    components: {
-      BackHeader,
-      SongList
-    },
     methods: {
       getData() {
         getPlayListDetail(this.$route.query.id).then(res => {
           // 如果图片的方案行不通，就通过背景来设置歌单的封面
           // this.$refs.playListDesc.style.background = `url(${res.playlist.coverImgUrl})`
           const { playlist } = res
+          // console.log(res)
           this.coverImgUrl = playlist.coverImgUrl
           this.playListTitle = playlist.name
-          this.updateTime = moment(playlist.updateTime).format("MMM Do")
+          this.updateTime = moment(playlist.updateTime).format()
           this.tracks = playlist.tracks
           this.trackCount = playlist.trackCount
           this.subscribedCount = playlist.subscribedCount
@@ -76,6 +83,19 @@
 
 <style lang='less' scoped>
   // TODO: 做成全局懒加载的话，这个代码放哪里？
+  .play-list-detail {
+    height: 100vh;
+    position: relative;
+  }
+  .content {
+    overflow: hidden;
+
+    position: absolute;
+    top: 0;
+    bottom: 0;  
+    left: 0;
+    right: 0;
+  }
   img[lazy="loading"] {
     width: 3.75rem;
     height: 3.75rem;
