@@ -24,7 +24,7 @@
     methods: {
       formatSinger,
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>

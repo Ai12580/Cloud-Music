@@ -24,7 +24,7 @@
 </template>
 
 <script>
-  import BackBtn from './BackBtn';
+  import BackBtn from './BackBtn'
   // 可能并没有将input封装进来的必要
   import { getSearchSuggestions } from "@/api/BackHeader";
 
@@ -35,32 +35,32 @@
         headerClass: '',
         userInput: null,
         allMatch: [],
-      };
+      }
     },
     methods: {
       async getData(newValue) {
-        const data = await getSearchSuggestions(newValue);
-        this.allMatch = data.result.allMatch;
+        const data = await getSearchSuggestions(newValue)
+        this.allMatch = data.result.allMatch
       },
       cleanUserInput() {
-        this.userInput = null;
+        this.userInput = null
       },
       handleEnter() {
-        this.doAfterUserEnter(this.userInput);
+        this.doAfterUserEnter(this.userInput)
         // 每次用户敲击enter键，执行完父组件传来的回调函数后，都要清空用户的输入
-        this.cleanUserInput();
+        this.cleanUserInput()
       },
     },
     watch: {
       userInput(newUserInput) {
         // 该判定条件防止这种情况：输入框已经为空，但用户还在不断删除时，仍然发起无用请求
-        if (newUserInput !== '') this.getData(newUserInput);
+        if (newUserInput !== '') this.getData(newUserInput)
       },
     },
     computed: {
       // 搜索建议的显示完全依赖于用户的输入情况
       searchSuggestionsFlag() {
-        return this.userInput !== null && this.userInput !== '';
+        return this.userInput !== null && this.userInput !== ''
       },
     },
     components: {
@@ -69,9 +69,9 @@
     // input参数是来自父组件的方法，用于获取用户输入的值userInput
     props: ['title', 'color', 'doAfterUserEnter', 'input'],
     mounted() {
-      this.headerClass = `back-header ${this.color}`;
+      this.headerClass = `back-header ${this.color}`
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>

@@ -14,18 +14,18 @@
       reminderWrapClassName() {
         return this.ifShow
           ? 'reminder-wrap'
-          : 'reminder-wrap hidden';
+          : 'reminder-wrap hidden'
       },
     },
     methods: {
       hiddenReminder() {
-        this.callback();
+        this.callback()
       },
     },
     mounted() {
-      this.$refs.reminderWrap.style.height = getScreenHeight();
+      this.$refs.reminderWrap.style.height = getScreenHeight()
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>

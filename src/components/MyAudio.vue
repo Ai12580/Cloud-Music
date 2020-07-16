@@ -43,32 +43,32 @@
       // TODO: 把定时器改为computed或者watch
       setTimer() {
         this.timer = setInterval(() => {
-          this.getThenSetCurrentTime(this.$refs.audio.currentTime);
-        }, 500);
+          this.getThenSetCurrentTime(this.$refs.audio.currentTime)
+        }, 500)
       },
       clearTimer() {
-        clearInterval(this.timer);
-        this.timer = null;
+        clearInterval(this.timer)
+        this.timer = null
       },
       toggleToStopStatus() {
-        this.$refs.audio.pause();
-        this.clearTimer();
+        this.$refs.audio.pause()
+        this.clearTimer()
       },
       toggleToPlayStatus() {
-        this.$refs.audio.play();
-        // console.log(this.$refs.audio.paused);
-        this.setTimer();
+        this.$refs.audio.play()
+        // console.log(this.$refs.audio.paused)
+        this.setTimer()
       },
       refreshDuration() {
-        this.getThenSetDuration(this.$refs.audio.duration);
+        this.getThenSetDuration(this.$refs.audio.duration)
       },
       handleEnded() {
-        this.clearTimer();
-        this.getThenSetIsPlaying(false);
-        this.getThenSetCurrentTime(0);
+        this.clearTimer()
+        this.getThenSetIsPlaying(false)
+        this.getThenSetCurrentTime(0)
       },
       togglePlayerStatus() {
-        this.getThenSetIsPlaying(!this.isPlaying);
+        this.getThenSetIsPlaying(!this.isPlaying)
       },
       toSongComponent() {
         // 下面这行代码有很大的改进空间，这些参数在另一种方案下应该就不需要这样传来传去了
@@ -80,10 +80,10 @@
             id: this.songInfo.id,
           },
           params: { coverImgUrl: this.songInfo.coverImgUrl },
-        });
+        })
       },
       saveAudio() {
-        localStorage.setItem('audioElement', this.$refs.audio);
+        localStorage.setItem('audioElement', this.$refs.audio)
       },
     },
     computed: {
@@ -96,21 +96,21 @@
           && this.$refs.audio
           && this.$refs.audio.duration
         ) {
-          return true;
+          return true
         }
-        return false;
+        return false
       },
       iconClassname() {
-        return this.isPlaying ? 'iconfont icon-zanting' : 'iconfont icon-bofang1';
+        return this.isPlaying ? 'iconfont icon-zanting' : 'iconfont icon-bofang1'
       },
     },
     watch: {
       isPlaying(newValue) {
         // debugger;
-        newValue ? this.toggleToPlayStatus() : this.toggleToStopStatus();
+        newValue ? this.toggleToPlayStatus() : this.toggleToStopStatus()
       },
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>

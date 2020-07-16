@@ -18,10 +18,10 @@
     name: 'Nav',
     methods: {
       /*     toSearch() {
-        this.$router.push('/search');
+        this.$router.push('/search')
       }, */
     },
-  };
+  }
 </script>
 
 <style lang='less' scoped>

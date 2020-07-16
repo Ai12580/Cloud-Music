@@ -12,7 +12,7 @@
   export default {
     name: 'Spin',
     props: ['spining']
-  };
+  }
 </script>
 
 <style lang='less' scoped>
