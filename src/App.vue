@@ -71,7 +71,8 @@
   };
 </script>
 
-<style lang='less' scoped>
+<style lang='less'>
+  @import "./assets/less/index.less";
   /* slideout样式 */
   body {
     width: 100%;

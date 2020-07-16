@@ -1,12 +1,10 @@
 import Vue from 'vue'
-import $ from 'zepto' /* FIXME: 暂时不能通过这种方式引入zepto */
-import './style/index.less' // 引入自定义的全局样式
 import VueAwesomeSwiper from 'vue-awesome-swiper' // 引入Vue版本的swiper插件
 import 'swiper/dist/css/swiper.css' // 引入swiper插件的样式文件
 import App from './App.vue'
 import Spin from './components/Spin.vue'
 import router from './router'
-import store from './store/index'
+import store from './store'
 import loading from './assets/loading.jpg'
 
 Vue.use(VueAwesomeSwiper)
