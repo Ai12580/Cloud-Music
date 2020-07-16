@@ -1,4 +1,4 @@
-import * as playControlApi from '../api/PlayControl/PlayControl';
+import * as playControlApi from '../api/PlayControl';
 import * as myApi from '../api/My';
 import * as loginRegisterApi from '../api/SideBar';
 

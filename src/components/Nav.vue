@@ -14,37 +14,38 @@
 </template>
 
 <script>
-export default {
-  methods: {
-    /*     toSearch() {
-      this.$router.push('/search');
-    }, */
-  },
-};
+  export default {
+    name: 'Nav',
+    methods: {
+      /*     toSearch() {
+        this.$router.push('/search');
+      }, */
+    },
+  };
 </script>
 
-<style scoped lang='less'>
-i {
-  display: block;
-  font-size: 0.22rem;
-  color: #f1f1f1;
-}
-
-// 播放器顶部导航栏
-.mp-header {
-  display: flex;
-  height: 0.44rem;
-  justify-content: space-between; // 实现顶栏平均分布
-  align-items: center; // 实现顶栏垂直居中
-  background-color: #d44439;
-}
-
-a {
-  color: lightcoral;
-  font-size: 0.15rem;
-  &.router-link-active {
-    text-decoration: none;
-    color: #fcdae9;
+<style lang='less' scoped>
+  i {
+    display: block;
+    font-size: 0.22rem;
+    color: #f1f1f1;
   }
-}
+
+  // 播放器顶部导航栏
+  .mp-header {
+    display: flex;
+    height: 0.44rem;
+    justify-content: space-between; // 实现顶栏平均分布
+    align-items: center; // 实现顶栏垂直居中
+    background-color: #d44439;
+  }
+
+  a {
+    color: lightcoral;
+    font-size: 0.15rem;
+    &.router-link-active {
+      text-decoration: none;
+      color: #fcdae9;
+    }
+  }
 </style>

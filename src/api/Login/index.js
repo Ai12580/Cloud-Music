@@ -1,10 +1,14 @@
-import axios from '../api';
+import {request} from '@/network/request'
 
-export const login = (phone, password) => axios.get('/login/cellphone', {
-  params: {
-    phone,
-    password,
-    random: Math.random(),
-  },
-  withCredentials: true,
-});
+export function login(phone, password) {
+  return request({
+    method: 'get',
+    url: '/login/cellphone',
+    params: {
+      phone,
+      password,
+      random: Math.random()
+    },
+    withCredentials: true
+  })
+}

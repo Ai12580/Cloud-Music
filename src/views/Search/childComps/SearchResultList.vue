@@ -2,13 +2,12 @@
   <ul class="track-list">
     <li class="track-item" v-for="(item, index) in tracks" :key="index">
       <router-link
-        :to="{name: 'Song', query: {name: item.name, singers: formatSinger(item.ar), id:item.id}, params: {coverImgUrl: item.al.picUrl}}"
+        :to="{name: 'Song', query: {name: item.name, singers: formatSinger(item.artists), id:item.id, album: item.album.id}, params: {coverImgUrl: '/'}}"
         class="link-to-play-control"
       >
-        <div class="track-rank">{{index + 1}}</div>
         <div class="track-info">
           <p class="track-title ellipsis">{{item.name}}</p>
-          <p class="track-desc ellipsis">{{formatSinger(item.ar)}} - {{item.al.name}}</p>
+          <p class="track-desc ellipsis">{{formatSinger(item.artists)}} - {{item.album.name}}</p>
         </div>
       </router-link>
     </li>
@@ -16,10 +15,12 @@
 </template>
 
 <script>
+  // 出于提取公共组件的初衷，原本想加SearchResultList组件和PlayListDetail页面下的SongList组件封装成一个组件
+  // 但由于二者的api不同，取得的数据格式也不同，导致暂时封装失败
   import { formatSinger } from "@/common/utils";
 
   export default {
-    name: 'SongList',
+    name: 'SearchResultList',
     props: ['tracks'],
     methods: {
       formatSinger,
@@ -29,18 +30,12 @@
 
 <style lang='less' scoped>
   .track-list {
-    margin-bottom: 1rem;
     .track-item {
       .link-to-play-control {
         display: flex;
         align-items: center;
         height: 0.6rem;
         border-bottom: 1px solid #e4e4e4;
-        .track-rank {
-          text-align: center;
-          width: 16%;
-          font-size: 0.18rem;
-        }
         .track-info {
           width: 84%;
           .track-title {

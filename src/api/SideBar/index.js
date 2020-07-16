@@ -1,21 +1,33 @@
-import axios from '../api';
+import {request} from '@/network/request'
 
-export const logout = () => axios.get('/logout', {
-  withCredentials: true,
-  params: {
-    random: Math.random(),
-  },
-});
+export function logout() {
+  return request({
+    method: 'get',
+    url: '/logout',
+    withCredentials: true,
+    params: {
+      random: Math.random()
+    }
+  })
+}
 
-export const getLoginStatus = () => axios.get('/login/status', {
-  withCredentials: true,
-  params: {
-    random: Math.random(),
-  },
-});
+export function getLoginStatus() {
+  return request({
+    method: 'get',
+    url: '/login/status',
+    withCredentials: true,
+    params: {
+      random: Math.random()
+    }
+  })
+}
 
-export const getUserDetail = uid => axios.get('/user/detail', {
-  params: {
-    uid,
-  },
-});
+export function getUserDetail(uid) {
+  return request({
+    method: 'get',
+    url: '/user/detail',
+    params: {
+      uid
+    }
+  })
+}

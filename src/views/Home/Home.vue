@@ -9,27 +9,28 @@
 </template>
 
 <script>
-import HomeSwiper from './HomeSwiper.vue';
-import FourCircles from './FourCircles.vue';
-import RecommendSongList from './RecommendSongList.vue';
+  import HomeSwiper from './childComps/HomeSwiper';
+  import FourCircles from './childComps/FourCircles';
+  import RecommendSongList from './childComps/RecommendSongList';
 
-export default {
-  components: {
-    HomeSwiper,
-    FourCircles,
-    RecommendSongList,
-  },
-};
+  export default {
+    name: 'Home',
+    components: {
+      HomeSwiper,
+      FourCircles,
+      RecommendSongList,
+    },
+  };
 </script>
 
 <style lang="less" scoped>
-.redWall {
-  position: absolute;
-  z-index: -1; // 使红墙显示在最底层
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 1.5rem;
-  background-color: #d44439;
-}
+  .redWall {
+    position: absolute;
+    z-index: -1; // 使红墙显示在最底层
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1.5rem;
+    background-color: #d44439;
+  }
 </style>

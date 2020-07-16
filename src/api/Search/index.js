@@ -1,8 +1,8 @@
 import {request} from '@/network/request'
 
-export function getCoverImgUrl(albumId) {
+export function getHotSearch() {
   return request({
     method: 'get',
-    url: `/album?id=${albumId}`
+    url: '/search/hot'
   })
 }

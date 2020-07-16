@@ -1,11 +1,12 @@
 import {request} from '@/network/request'
 
-export function getSongDetail(ids) {
+export function getPlayListDetail(id) {
   return request({
     method: 'get',
-    url: '/song/detail',
+    url: '/playlist/detail',
     params: {
-      ids
+      id,
+      random: Math.random()
     }
   })
 }

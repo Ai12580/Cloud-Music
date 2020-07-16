@@ -8,17 +8,18 @@
 </template>
 
 <script>
-// 加载动画组件，由spining来控制加载动画的显示
-export default {
-  props: ['spining']
-};
+  // 加载动画组件，由spining来控制加载动画的显示
+  export default {
+    name: 'Spin',
+    props: ['spining']
+  };
 </script>
 
-<style scoped lang='less'>
-.py-loading{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30vh;
-}
+<style lang='less' scoped>
+  .py-loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+  }
 </style>

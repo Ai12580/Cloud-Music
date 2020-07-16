@@ -29,68 +29,68 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-import { getUserPlaylist } from '../../api/My';
+  import { mapActions, mapGetters } from 'vuex';
+  import { getUserPlaylist } from "@/api/My";
 
-export default {
-  name: 'My',
-  data() {
-    return {
-      likelistId: null,
-    };
-  },
-  computed: {
-    ...mapGetters(['likelistCount', 'recentPlaylist']),
-    recentPlayCount() {
-      return this.recentPlaylist.length;
+  export default {
+    name: 'My',
+    data() {
+      return {
+        likelistId: null,
+      };
     },
-  },
-  methods: {
-    ...mapActions(['getThenSetLikelist']),
-    async getData() {
-      const uid = localStorage.getItem('uid');
-      // TODO: 下面的代码是否要等第一个请求完成后才会进行第二个请求？
-      this.getThenSetLikelist(uid);
-      this.getLikelistId(uid);
+    computed: {
+      ...mapGetters(['likelistCount', 'recentPlaylist']),
+      recentPlayCount() {
+        return this.recentPlaylist.length;
+      },
     },
-    async getLikelistId(uid) {
-      try {
-        const resUserPlaylist = await getUserPlaylist(uid);
-        this.likelistId = resUserPlaylist.playlist[0].id;
-      } catch (error) {
-        console.log(error);
-      }
+    methods: {
+      ...mapActions(['getThenSetLikelist']),
+      async getData() {
+        const uid = localStorage.getItem('uid');
+        // TODO: 下面的代码是否要等第一个请求完成后才会进行第二个请求？
+        this.getThenSetLikelist(uid);
+        this.getLikelistId(uid);
+      },
+      async getLikelistId(uid) {
+        try {
+          const resUserPlaylist = await getUserPlaylist(uid);
+          this.likelistId = resUserPlaylist.playlist[0].id;
+        } catch (error) {
+          console.log(error);
+        }
+      },
     },
-  },
-  created() {
-    this.getData();
-  },
-};
+    created() {
+      this.getData();
+    },
+  };
 </script>
 
-<style scoped lang='less'>
-.play-list-group {
-  .play-list-item {
-    padding: 0.1rem 0.1rem;
-    border-bottom: 1px solid #e4e4e4;
-    font-size: .16rem;
-    .icon-container {
-      box-sizing: border-box;
-      display: inline-block;
-      width: 10%;
-      .iconfont {
-        font-size: 22px;
-        vertical-align: middle;
+<style lang='less' scoped>
+  .play-list-group {
+    .play-list-item {
+      padding: 0.1rem 0.1rem;
+      border-bottom: 1px solid #e4e4e4;
+      font-size: .16rem;
+      .icon-container {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 10%;
+        .iconfont {
+          font-size: 22px;
+          vertical-align: middle;
+        }
       }
-    }
-    .play-list-desc {
-      box-sizing: border-box;
-      display: inline-block;
-      width: 90%;
-      > span {
-        vertical-align: middle;
+      .play-list-desc {
+        box-sizing: border-box;
+        display: inline-block;
+        width: 90%;
+        > span {
+          vertical-align: middle;
+        }
       }
     }
   }
-}
 </style>

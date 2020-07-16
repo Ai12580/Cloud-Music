@@ -28,112 +28,113 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+  import { mapGetters, mapActions } from 'vuex';
 
-import { logout, getUserDetail } from "../api/SideBar";
+  import { logout, getUserDetail } from "@/api/SideBar";
 
-export default {
-  props: ["children"],
-  data() {
-    return {
-      nickname: null,
-      avatarUrl: null
-    };
-  },
-  computed: {
-    ...mapGetters(["loginStatus"])
-  },
-  watch: {
-    async loginStatus(hasLogined) {
-      if (hasLogined) {
+  export default {
+    name: 'SideBarMenu',
+    props: ["children"],
+    data() {
+      return {
+        nickname: null,
+        avatarUrl: null
+      };
+    },
+    computed: {
+      ...mapGetters(["loginStatus"])
+    },
+    watch: {
+      async loginStatus(hasLogined) {
+        if (hasLogined) {
+          try {
+            const res = await getUserDetail(localStorage.getItem("uid"));
+            this.nickname = res.profile.nickname;
+            this.avatarUrl = res.profile.avatarUrl;
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      }
+    },
+    methods: {
+      ...mapActions(["getThenSetLoginStatus"]),
+      async logoutThenUpdateLoginStatus() {
         try {
-          const res = await getUserDetail(localStorage.getItem("uid"));
-          this.nickname = res.profile.nickname;
-          this.avatarUrl = res.profile.avatarUrl;
+          await logout();
+          this.getThenSetLoginStatus(); // 更新vuex里的登录状态
         } catch (error) {
           console.log(error);
         }
+      },
+      toLoginPage() {
+        this.$props.children[1].slideout.close();
+        this.$router.push("/login");
       }
     }
-  },
-  methods: {
-    ...mapActions(["getThenSetLoginStatus"]),
-    async logoutThenUpdateLoginStatus() {
-      try {
-        await logout();
-        this.getThenSetLoginStatus(); // 更新vuex里的登录状态
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    toLoginPage() {
-      this.$props.children[1].slideout.close();
-      this.$router.push("/login");
-    }
-  }
-};
+  };
 </script>
 
-<style scoped lang='less'>
-.side-bar-menu {
-  position: relative;
-  .menu-top {
-    height: 1.7rem;
-    padding-top: 0.4rem;
-    background: #000;
-    .login-desc1,
-    .login-desc2 {
-      color: lightgray;
-      text-align: center;
-      padding-bottom: 0.02rem;
-    }
-    .login-btn-container {
-      padding-top: 0.1rem;
-      text-align: center;
-      .login-btn {
-        border: 1px solid lightgray;
-        padding: 0.05rem 0.35rem;
-        border-radius: 0.14rem;
-        background: #000;
-        color: #f1f1f1;
-      }
-    }
-
-    .haslogin-style {
-      .img-container {
+<style lang='less' scoped>
+  .side-bar-menu {
+    position: relative;
+    .menu-top {
+      height: 1.7rem;
+      padding-top: 0.4rem;
+      background: #000;
+      .login-desc1,
+      .login-desc2 {
+        color: lightgray;
         text-align: center;
-        .avatar {
-          width: 0.7rem;
-          height: 0.7rem;
-          border-radius: 50%;
+        padding-bottom: 0.02rem;
+      }
+      .login-btn-container {
+        padding-top: 0.1rem;
+        text-align: center;
+        .login-btn {
+          border: 1px solid lightgray;
+          padding: 0.05rem 0.35rem;
+          border-radius: 0.14rem;
+          background: #000;
+          color: #f1f1f1;
         }
       }
-      .nickname {
-        font-weight: 400;
-        font-size: 18px;
-        text-align: center;
+
+      .haslogin-style {
+        .img-container {
+          text-align: center;
+          .avatar {
+            width: 0.7rem;
+            height: 0.7rem;
+            border-radius: 50%;
+          }
+        }
+        .nickname {
+          font-weight: 400;
+          font-size: 18px;
+          text-align: center;
+        }
+      }
+    }
+    .menu-body {
+      height: 10rem;
+      background: #fff;
+    }
+    .menu-footer {
+      position: fixed;
+      width: 85%; // todo: 这个footer以div为定位基准元素，如果改为以menu为基准元素？
+      bottom: 0;
+      padding: 0.1rem;
+      border-top: 1px solid #e4e4e4;
+      .btn-wrap {
+        display: flex;
+        justify-content: space-around;
+        .logout-btn,
+        .iconfont {
+          font-size: 16px;
+          font-weight: 300;
+        }
       }
     }
   }
-  .menu-body {
-    height: 10rem;
-    background: #fff;
-  }
-  .menu-footer {
-    position: fixed;
-    width: 85%; // todo: 这个footer以div为定位基准元素，如果改为以menu为基准元素？
-    bottom: 0;
-    padding: 0.1rem;
-    border-top: 1px solid #e4e4e4;
-    .btn-wrap {
-      display: flex;
-      justify-content: space-around;
-      .logout-btn,
-      .iconfont {
-        font-size: 16px;
-        font-weight: 300;
-      }
-    }
-  }
-}
 </style>

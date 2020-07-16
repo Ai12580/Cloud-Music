@@ -28,97 +28,97 @@
 </template>
 
 <script>
-import Slideout from "vue-slideout";
-import { mapActions } from "vuex";
-import MyAudio from "./components/MyAudio.vue";
-import Nav from "./components/Nav.vue";
-import SideBarMenu from "./components/SideBarMenu.vue";
+  import Slideout from "vue-slideout";
+  import { mapActions } from "vuex";
+  import MyAudio from "./components/MyAudio";
+  import Nav from "./components/Nav";
+  import SideBarMenu from "./components/SideBarMenu";
 
-export default {
-  components: {
-    Slideout,
-    MyAudio,
-    SideBarMenu,
-    Nav
-  },
-  computed: {
-    shouldHaveNav(){
-      return ['/home', '/my'].indexOf(this.$route.path) !== -1
-    }
-  },
-  methods: {
-    ...mapActions(["getThenSetLoginStatus"]),
-    open() {
-      this.$refs.panel.addEventListener("click", this.closeSlideout, true);
+  export default {
+    components: {
+      Slideout,
+      MyAudio,
+      SideBarMenu,
+      Nav
     },
-    close() {
-      this.$refs.panel.removeEventListener("click", this.closeSlideout, true);
+    computed: {
+      shouldHaveNav(){
+        return ['/home', '/my'].indexOf(this.$route.path) !== -1
+      }
     },
-    closeSlideout(e) {
-      // e.stopPropagation();
-      e.preventDefault(); // 阻止事件传播，以免触发主页元素的点击事件。   这里很神奇，stopPropagation不起作用，反而preventDefault起到了阻止传播的作用
-      this.$refs.slideout.slideout.close();
+    methods: {
+      ...mapActions(["getThenSetLoginStatus"]),
+      open() {
+        this.$refs.panel.addEventListener("click", this.closeSlideout, true);
+      },
+      close() {
+        this.$refs.panel.removeEventListener("click", this.closeSlideout, true);
+      },
+      closeSlideout(e) {
+        // e.stopPropagation();
+        e.preventDefault(); // 阻止事件传播，以免触发主页元素的点击事件。   这里很神奇，stopPropagation不起作用，反而preventDefault起到了阻止传播的作用
+        this.$refs.slideout.slideout.close();
+      }
+    },
+    created() {
+      // 如果后台登录接口不稳定，可以用这种临时的解决方案：退出应用后，删除localStorage里的uid
+      // localStorage.removeItem('uid');
+      this.getThenSetLoginStatus();
+    },
+    mounted() {
+      this.$refs.slideout.slideout.disableTouch(); // 禁止通过左滑打开侧边栏
     }
-  },
-  created() {
-    // 如果后台登录接口不稳定，可以用这种临时的解决方案：退出应用后，删除localStorage里的uid
-    // localStorage.removeItem('uid');
-    this.getThenSetLoginStatus();
-  },
-  mounted() {
-    this.$refs.slideout.slideout.disableTouch(); // 禁止通过左滑打开侧边栏
-  }
-};
+  };
 </script>
 
-<style scoped lang='less'>
-/* slideout样式 */
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
+<style lang='less' scoped>
+  /* slideout样式 */
+  body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
 
-.slideout-menu {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  width: 85%;
-  height: 100vh;
-  overflow-y: scroll;
-  -webkit-overflow-scrolling: touch;
-  z-index: 999;
-  display: none;
-  background-color: #1d1f20;
-  color: white;
-  box-shadow: 0 0 2rem #000;
-}
+  .slideout-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 85%;
+    height: 100vh;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+    z-index: 999;
+    display: none;
+    background-color: #1d1f20;
+    color: white;
+    box-shadow: 0 0 2rem #000;
+  }
 
-.slideout-menu-left {
-  left: 0;
-}
+  .slideout-menu-left {
+    left: 0;
+  }
 
-.slideout-menu-right {
-  right: 0;
-}
+  .slideout-menu-right {
+    right: 0;
+  }
 
-.slideout-panel {
-  // color: white;
-  position: relative;
-  z-index: 1;
-  will-change: transform;
-  min-height: 100vh;
-}
+  .slideout-panel {
+    // color: white;
+    position: relative;
+    z-index: 1;
+    will-change: transform;
+    min-height: 100vh;
+  }
 
-.slideout-open,
-.slideout-open body,
-.slideout-open .slideout-panel {
-  overflow: hidden;
-}
+  .slideout-open,
+  .slideout-open body,
+  .slideout-open .slideout-panel {
+    overflow: hidden;
+  }
 
-.slideout-open .slideout-menu {
-  display: block;
-}
+  .slideout-open .slideout-menu {
+    display: block;
+  }
 
-/* slideout样式 */
+  /* slideout样式 */
 </style>

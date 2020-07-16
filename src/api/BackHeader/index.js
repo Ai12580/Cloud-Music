@@ -1,3 +1,8 @@
-import axios from '../api';
+import {request} from '@/network/request'
 
-export const getSearchSuggestions = userInput => axios.get(`/search/suggest?keywords=${userInput}&type=mobile`);
+export function getSearchSuggestions(userInput) {
+  return request({
+    method: 'get',
+    url: `/search/suggest?keywords=${userInput}&type=mobile`
+  })
+}

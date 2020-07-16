@@ -13,40 +13,41 @@
 </template>
 
 <script>
-import BackHeader from "../../components/BackHeader.vue";
-import OfficialList from "./OfficialList.vue";
-import TopList from "./TopList.vue";
-import { getToplistDetail } from "../../api/LeaderBoard/LeaderBoard";
+  import BackHeader from '@/components/BackHeader';
+  import OfficialList from './childComps/OfficialList';
+  import TopList from './childComps/TopList';
+  import { getToplistDetail } from "@/api/LeaderBoard";
 
-export default {
-  data() {
-    return {
-      officialList: [],
-      recommendList: [],
-      internationalList: [],
-      moreList: []
-    };
-  },
-  components: {
-    BackHeader,
-    OfficialList,
-    TopList
-  },
-  mounted() {
-    getToplistDetail()
-      .then(res => {
-        const { list } = res;
-        this.officialList = list.slice(0, 4);
-        this.recommendList = list.slice(4, 10);
-        this.internationalList = list.slice(10, 16);
-        this.moreList = list.slice(16);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-};
+  export default {
+    name: 'LeaderBoard',
+    data() {
+      return {
+        officialList: [],
+        recommendList: [],
+        internationalList: [],
+        moreList: []
+      };
+    },
+    components: {
+      BackHeader,
+      OfficialList,
+      TopList
+    },
+    mounted() {
+      getToplistDetail()
+        .then(res => {
+          const { list } = res;
+          this.officialList = list.slice(0, 4);
+          this.recommendList = list.slice(4, 10);
+          this.internationalList = list.slice(10, 16);
+          this.moreList = list.slice(16);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+  };
 </script>
 
-<style scoped lang='less'>
+<style lang='less' scoped>
 </style>
