@@ -50,7 +50,7 @@
     },
     methods: {
       getData() {
-        getPlayListDetail(this.$route.query.id).then(res => {
+        getPlayListDetail(this.$router.query.id).then(res => {
           // 如果图片的方案行不通，就通过背景来设置歌单的封面
           // this.$refs.playListDesc.style.background = `url(${res.playlist.coverImgUrl})`;
           const { playlist } = res;
