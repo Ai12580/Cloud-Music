@@ -84,7 +84,7 @@
     display: flex;
     align-items: center;
     height: 0.44rem;
-    color: #f1f1f1;
+    color: #333333;
     &.red {
       background-color: #d44439;
     }

@@ -2,7 +2,7 @@
   <div class="home">
     <scroll class="content">
       <HomeSwiper/>
-      <FourCircles/>
+      <HomeIcons/>
       <RecommendSongList/>
     </scroll>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
   import HomeSwiper from './childComps/HomeSwiper'
-  import FourCircles from './childComps/FourCircles'
+  import HomeIcons from './childComps/HomeIcons'
   import RecommendSongList from './childComps/RecommendSongList'
   import Scroll from '@/components/common/scroll/Scroll'
 
@@ -18,7 +18,7 @@
     name: 'Home',
     components: {
       HomeSwiper,
-      FourCircles,
+      HomeIcons,
       RecommendSongList,
       Scroll
     },

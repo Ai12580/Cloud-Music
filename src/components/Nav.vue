@@ -17,10 +17,8 @@
   export default {
     name: 'Nav',
     methods: {
-      /*     toSearch() {
-        this.$router.push('/search')
-      }, */
-    },
+
+    }
   }
 </script>
 
@@ -37,15 +35,16 @@
     height: 0.44rem;
     justify-content: space-between; // 实现顶栏平均分布
     align-items: center; // 实现顶栏垂直居中
-    background-color: #d44439;
+    background-color: #FFFFFF;
   }
 
   a {
-    color: lightcoral;
+    color: #808080;
     font-size: 0.15rem;
     &.router-link-active {
       text-decoration: none;
-      color: #fcdae9;
+      font-size: .16rem;
+      color: #333333;
     }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="leader-board">
-    <back-header title="排行榜" color="red"/>
+    <back-header title="排行榜"/>
     <scroll class="content">
       <spin :spining="!(moreList.length>0)">
         <section class="left-right-padding-box">
