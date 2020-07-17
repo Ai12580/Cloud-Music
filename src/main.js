@@ -3,7 +3,7 @@ import App from './App.vue'
 import Spin from './components/Spin.vue'
 import router from './router'
 import store from './store'
-import loading from './assets/loading.jpg'
+import loading from '@/assets/img/load/loading.jpg'
 
 Vue.use(Spin) // 全局的loading组件
 Vue.component('spin', Spin)

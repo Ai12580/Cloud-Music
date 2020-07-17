@@ -63,9 +63,8 @@
           // console.log(playlist)
           this.coverImgUrl = playlist.coverImgUrl
           this.playListTitle = playlist.name
-          this.updateTime = moment(playlist.updateTime).format()
+          this.updateTime = moment(playlist.updateTime).format("MMM Do")
           this.tracks = playlist.tracks
-          console.log(this.tracks)
           this.trackCount = playlist.trackCount
           this.subscribedCount = playlist.subscribedCount
         })
