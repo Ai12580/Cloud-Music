@@ -60,11 +60,12 @@
           // 如果图片的方案行不通，就通过背景来设置歌单的封面
           // this.$refs.playListDesc.style.background = `url(${res.playlist.coverImgUrl})`
           const { playlist } = res
-          // console.log(res)
+          // console.log(playlist)
           this.coverImgUrl = playlist.coverImgUrl
           this.playListTitle = playlist.name
           this.updateTime = moment(playlist.updateTime).format()
           this.tracks = playlist.tracks
+          console.log(this.tracks)
           this.trackCount = playlist.trackCount
           this.subscribedCount = playlist.subscribedCount
         })

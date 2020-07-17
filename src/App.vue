@@ -28,11 +28,11 @@
 </template>
 
 <script>
-  import Slideout from "vue-slideout";
-  import { mapActions } from "vuex";
-  import MyAudio from "./components/MyAudio";
-  import Nav from "./components/Nav";
-  import SideBarMenu from "./components/SideBarMenu";
+import Slideout from "vue-slideout";
+import { mapActions } from "vuex";
+import MyAudio from "./components/MyAudio.vue";
+import Nav from "./components/Nav.vue";
+import SideBarMenu from "./components/SideBarMenu.vue";
 
   export default {
     components: {
@@ -78,6 +78,7 @@
     width: 100%;
     height: 100%;
     margin: 0;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   }
 
   .slideout-menu {

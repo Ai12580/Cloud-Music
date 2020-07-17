@@ -100,6 +100,7 @@
       width: 85%;
       height: 0.28rem;
       margin-left: 0.1rem;
+      margin-right: 0.1rem;
       border: none;
       border-bottom: 1px solid #e6e6e6;
       background: #d44439;

@@ -1,16 +1,20 @@
 <template>
   <div class="search-box left-right-padding-box" ref="searchBox">
     <back-header color="red" :input='true' :doAfterUserEnter="startSearch"></back-header>
-    <search-list v-if="!showResultPageFlag" :doAfterUserClick='startSearch' :list="hots" title="热门搜索" class="hot-search"></search-list>
-    <search-list v-if="!showResultPageFlag" :doAfterUserClick='startSearch' :list="history" title="历史记录"></search-list>
-    <search-result-list v-else :tracks="songList" class="search-result-list"></search-result-list>
+    <scroll class="content">
+      <search-history v-if="!showResultPageFlag" :doAfterUserClick='startSearch' :list="history" title="历史记录" class="history-search"></search-history>
+      <search-list v-if="!showResultPageFlag" :doAfterUserClick='startSearch' :list="hots" title="热搜榜"></search-list>
+      <search-result-list v-else :tracks="songList" class="search-result-list"></search-result-list>
+    </scroll>
   </div>
 </template>
 
 <script>
   import BackHeader from '@/components/BackHeader'
   import SearchList from './childComps/SearchList'
+  import SearchHistory from './childComps/SearchHistory'
   import SearchResultList from './childComps/SearchResultList'
+  import Scroll from '@/components/common/scroll/Scroll'
   import { getHotSearch } from "@/api/Search";
   import { getSearchResult } from "@/api/SearchResult";
 
@@ -20,6 +24,8 @@
       BackHeader,
       SearchList,
       SearchResultList,
+      SearchHistory,
+      Scroll
     },
     data() {
       return {
@@ -30,10 +36,11 @@
       }
     },
     methods: {
-      async getData() {
-        const data = await getHotSearch()
-        // this.hots = data.result.hots
-        console.log(data)
+      getData() {
+        getHotSearch().then(res => {
+          this.hots = res.data
+          console.log(this.hots)
+        })
       },
       switchToResult() {
         this.showResultPageFlag = true
@@ -63,17 +70,26 @@
 
 <style lang='less' scoped>
   .search-box {
-    position: absolute;
     z-index: 999;
     top: 0;
     left: 0;
     width: 100%;
+    height: 100vh;
     background: white;
-    .hot-search {
+    .history-search {
       margin-top: 0.44rem;
     }
     .search-result-list {
       padding-top: 0.44rem;
     }
+  }
+  .content {
+    overflow: hidden;
+
+    position: absolute;
+    top: 0.3rem;
+    bottom: 0;  
+    left: 0;
+    right: 0;
   }
 </style>
