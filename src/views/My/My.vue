@@ -59,6 +59,8 @@
           this.likelistId = resUserPlaylist.playlist[0].id
         } catch (error) {
           console.log(error);
+          this.$toast.show('请先登录哦！', 2000)
+          this.$router.push('/login')
         }
       },
     },

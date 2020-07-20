@@ -8,6 +8,12 @@ import loading from '@/assets/img/load/loading.jpg'
 Vue.use(Spin) // 全局的loading组件
 Vue.component('spin', Spin)
 
+//toast插件
+import toast from './components/common/toast'
+
+//安装toast插件
+Vue.use(toast)
+
 Vue.config.productionTip = false
 
 // 注册一个全局自定义指令 `v-lazy`用于图片懒加载

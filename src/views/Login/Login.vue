@@ -117,8 +117,8 @@
     .login-btn-container {
       text-align: center;
       .login-btn {
-        background: #d44439;
-        color: #f1f1f1;
+        background: #FE3A3B;
+        color: #FFFFFF;
         border: none;
         width: 90%;
         height: 0.4rem;

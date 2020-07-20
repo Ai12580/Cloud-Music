@@ -153,7 +153,7 @@
         align-items: center; // 垂直居中
         justify-content: space-around; // 水平居中
         flex: 2; // 设置宽度比例
-        background: #d44439;
+        background: #FE3A3B;
         color: #f1f1f1;
         font-size: 0.16rem;
       }

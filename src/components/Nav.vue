@@ -26,7 +26,8 @@
   i {
     display: block;
     font-size: 0.22rem;
-    color: #f1f1f1;
+    color: #333333;
+    margin: .1rem;
   }
 
   // 播放器顶部导航栏

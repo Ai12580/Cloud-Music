@@ -249,7 +249,7 @@
             display: block;
             width: 0;
             height: 100%;
-            background-color: #d44439;
+            background-color: #FE3A3B;
           }
         }
       }

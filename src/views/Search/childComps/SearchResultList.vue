@@ -46,7 +46,7 @@
     overflow: hidden;
 
     position: absolute;
-    top: 0.4rem;
+    top: 0.3rem;
     bottom: 0;  
     left: 0;
     right: 0;
@@ -54,6 +54,7 @@
 
   .track-list {
     .track-item {
+      padding: 0 .1rem;
       .link-to-play-control {
         display: flex;
         align-items: center;

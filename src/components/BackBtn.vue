@@ -21,8 +21,8 @@
 
 <style lang='less' scoped>
   .back-btn {
-    color: #fff;
-    margin: 0 0.05rem;
+    color: #333333;
+    margin: .1rem;
     padding: 10px 10px 10px 5px;
     .iconfont {
       font-size: 0.22rem;

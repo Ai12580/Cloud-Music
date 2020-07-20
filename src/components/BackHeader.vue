@@ -85,8 +85,9 @@
     align-items: center;
     height: 0.44rem;
     color: #333333;
+    background: #FFFFFF;
     &.red {
-      background-color: #d44439;
+      background-color: #FFFFFF;
     }
     &.trans {
       background-color: rgba(0, 0, 0, 0);
@@ -102,9 +103,9 @@
       margin-left: 0.1rem;
       margin-right: 0.1rem;
       border: none;
-      border-bottom: 1px solid #e6e6e6;
-      background: #d44439;
-      color: #e6e6e6;
+      border-bottom: 1px solid #C1C1C1;
+      background: #FFFFFF;
+      color: #7F7F7F;
       font-size: 0.17rem;
     }
     .search-suggestions-container {
