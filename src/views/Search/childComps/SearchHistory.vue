@@ -28,7 +28,7 @@ export default {
 .container {
   padding: 0.2rem 0;
   .title {
-    padding: 0.1rem 0;
+    padding: 0.1rem 0.1rem;
     font-size: .18rem;
   }
   .search-list {

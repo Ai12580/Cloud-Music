@@ -15,12 +15,12 @@
 <style lang='less' scoped>
   .list-item {
     display: flex;
-    height: 44px;
+    height: .44rem;
     text-align: center;
   }
   .left,.right {
-    width: 60px;
-    line-height: 44px;
+    width: .62rem;
+    line-height: .44rem;
   }
   .center {
     flex: 1;
