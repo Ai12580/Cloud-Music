@@ -4,8 +4,8 @@
     <search-list-item v-for="(item, index) in list" :key="index" class="search-list-item">
       <div slot="left">{{index + 1}}</div>
       <div slot="center" class="center">
-        <p>{{item.searchWord}}</p>
-        <p>{{item.content}}</p>
+        <p class="list-title">{{item.searchWord}}</p>
+        <p class="list-content">{{item.content}}</p>
       </div>
       <div slot="right">{{item.score}}</div>
     </search-list-item>
@@ -45,5 +45,12 @@
   }
   .search-list-item {
     font-size: .14rem;
+    padding: .2rem 0;
+  }
+  .list-title {
+    color: #000000;
+  }
+  .list-content {
+    color: #333333;
   }
 </style>

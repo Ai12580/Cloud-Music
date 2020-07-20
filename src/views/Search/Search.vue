@@ -39,7 +39,7 @@
       getData() {
         getHotSearch().then(res => {
           this.hots = res.data
-          console.log(this.hots)
+          // console.log(this.hots)
         })
       },
       switchToResult() {
